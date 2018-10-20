@@ -1,7 +1,7 @@
 // Imports the Google Cloud client library
 const vision = require('@google-cloud/vision');
 
-process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "C:\\Users\\Abdul\\Desktop\\Vision Key\\My Project-f85cf44f0c6e.json";
+process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "vision.json";
 
 // Your Google Cloud Platform project ID
 const projectId = 'earnest-trilogy-138223';

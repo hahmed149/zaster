@@ -1,7 +1,7 @@
 // Imports the Google Cloud client library
 const {Translate} = require('@google-cloud/translate');
 
-process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "C:\\Users\\Abdul\\Desktop\\Project key\\My Project-4105dfa87914.json";
+process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "translate.json";
 
 // Your Google Cloud Platform project ID
 const projectId = 'earnest-trilogy-138223';
