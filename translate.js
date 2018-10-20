@@ -14,7 +14,7 @@ const translate = new Translate({
 // The text to translate
 const text = 'Hello, world!';
 // The target language
-const target = 'es';
+const target = 'de';
 
 // Translates some text into Russian
 translate
