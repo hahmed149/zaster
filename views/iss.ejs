@@ -1,34 +1,97 @@
+<!DOCTYPE html>
 <html>
-  <head>
-  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
-  type="text/javascript" charset="utf-8"></script>
-  <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
-  type="text/javascript" charset="utf-8"></script>
-  </head>
-  <body>
-  <div style="width: 640px; height: 480px" id="mapContainer"></div>
-  <script>
-    // Initialize the platform object:
-    var platform = new H.service.Platform({
-    'app_id': 'OmsgpCqmBz0490xVWJGJ',
-    'app_code': 'xpzn8LhqZNC_OZizgZSWiQ'
-    });
+<head>
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059" />
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
 
-    // Obtain the default map types from the platform object
-    var maptypes = platform.createDefaultLayers();
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 400px; background: grey" />
+  <script  type="text/javascript" charset="UTF-8" >
+    
+/**
+ * Moves the map to display over Berlin
+ *
+ * @param  {H.Map} map      A HERE Map instance within the application
+ */
+function moveMapToBerlin(map){
+  
+var animatedSvg =
+  '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" ' + 
+  'y="0px" style="margin:-112px 0 0 -32px" width="136px"' + 
+  'height="150px" viewBox="0 0 136 150"><ellipse fill="#000" ' +
+  'cx="32" cy="128" rx="36" ry="4"><animate attributeName="cx" ' + 
+  'from="32" to="32" begin="0s" dur="1.5s" values="96;32;96" ' + 
+  'keySplines=".6 .1 .8 .1; .1 .8 .1 1" keyTimes="0;0.4;1"' + 
+  'calcMode="spline" repeatCount="indefinite"/>' +  
+  '<animate attributeName="rx" from="36" to="36" begin="0s"' +
+  'dur="1.5s" values="36;10;36" keySplines=".6 .0 .8 .0; .0 .8 .0 1"' + 
+  'keyTimes="0;0.4;1" calcMode="spline" repeatCount="indefinite"/>' +
+  '<animate attributeName="opacity" from=".2" to=".2"  begin="0s" ' +
+  ' dur="1.5s" values=".1;.7;.1" keySplines=" .6.0 .8 .0; .0 .8 .0 1" ' +
+  'keyTimes=" 0;0.4;1" calcMode="spline" ' +
+  'repeatCount="indefinite"/></ellipse><ellipse fill="#1b468d" ' +
+  'cx="26" cy="20" rx="16" ry="12"><animate attributeName="cy" ' +
+  'from="20" to="20" begin="0s" dur="1.5s" values="20;112;20" ' +
+  'keySplines=".6 .1 .8 .1; .1 .8 .1 1" keyTimes=" 0;0.4;1" ' +
+  'calcMode="spline" repeatCount="indefinite"/> ' +
+  '<animate attributeName="ry" from="16" to="16" begin="0s" ' + 
+  'dur="1.5s" values="16;12;16" keySplines=".6 .0 .8 .0; .0 .8 .0 1" ' +
+  'keyTimes="0;0.4;1" calcMode="spline" ' +
+  'repeatCount="indefinite"/></ellipse></svg>';
 
-    // Instantiate (and display) a map object:
-    var map = new H.Map(
-    document.getElementById('mapContainer'),
-    maptypes.normal.map,
-    {
-      zoom: 10,
-      center: { lng: <%= longitude%>, lat: <%= latitude%> }
-    });
+// Create an icon object, an object with geographic coordinates and a marker:
+var icon = new H.map.DomIcon(animatedSvg),
+  coords = { lng: <%= longitude%>, lat: <%= latitude%> },
+  marker = new H.map.DomMarker(coords, {icon: icon});
+
+// Set map center and zoom, add the marker to the map:
+map.setCenter(coords);
+map.setZoom(5);
+map.addObject(marker);
+
+}
+
+
+
+
+
+/**
+ * Boilerplate map initialization code starts below:
+ */
+
+//Step 1: initialize communication with the platform
+var platform = new H.service.Platform({
+  app_id: 'devportal-demo-20180625',
+  app_code: '9v2BkviRwi9Ot26kp2IysQ',
+  useHTTPS: true
+});
+var pixelRatio = window.devicePixelRatio || 1;
+var defaultLayers = platform.createDefaultLayers({
+  tileSize: pixelRatio === 1 ? 256 : 512,
+  ppi: pixelRatio === 1 ? undefined : 320
+});
+
+//Step 2: initialize a map  - not specificing a location will give a whole world view.
+var map = new H.Map(document.getElementById('map'),
+  defaultLayers.normal.map, {pixelRatio: pixelRatio});
+
+//Step 3: make the map interactive
+// MapEvents enables the event system
+// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+// Create the default UI components
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+// Now use the map as required...
+moveMapToBerlin(map);
   </script>
-  </body>
-  <footer>
-      
-  </footer>
+</body>
 </html>
+
+
