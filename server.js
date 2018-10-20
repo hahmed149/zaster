@@ -27,8 +27,8 @@ app.get('/iss', function(req, res) {
      let latitude = data2.latitude;
      let longitude = data2.longitude;
      let stuff = `${latitude} and ${longitude}`;
-     console.log(stuff);
-    res.render('iss', {stuff});
+     console.log(latitude,longitude);
+    res.render('iss', {latitude, longitude});
   
  
   });
