@@ -20,15 +20,21 @@ app.get('/', function(req, res) {
 
 
 const issLocation = 'http://api.open-notify.org/iss-now.json';
-app.get('/', function(req, res) {
+app.get('/iss', function(req, res) {
   request(issLocation, function(error, response, body) {
      let data2 = JSON.parse(body).iss_position;
-     console.log (data2);
-    res.render('iss', {data2:latitude, data2:longitude});
-    
+     console.log (data2.latitude,data2.longitude);
+     let latitude = data2.latitude;
+     let longitude = data2.longitude;
+     let stuff = `${latitude} and ${longitude}`;
+     console.log(latitude,longitude);
+    res.render('iss', {latitude, longitude});
+  
  
   });
 });
+
+
 //end api for iss
 
 app.listen(3000, function () {
