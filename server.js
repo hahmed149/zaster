@@ -1,19 +1,23 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express()
+const request = require('request');
+const app = express();
 
-app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
-app.get('/', function (req, res) {
-  res.render('index');
-})
-app.post('/', function (req, res) {
-  console.log(req.body.city);
-  res.render('index');  
-})
+const url = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY';
+
+app.get('/', function(req, res) {
+  request(url, function(error, response, body) {
+     let data = JSON.parse(body).hdurl;
+    res.render('index', {data});
+ 
+  });
+});
+//end api for background
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
