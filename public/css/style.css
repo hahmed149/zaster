@@ -1,0 +1,11 @@
+.p{
+    background-color: red;
+    font-size: 70px;
+}
+
+.body { 
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
