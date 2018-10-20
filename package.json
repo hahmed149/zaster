@@ -21,6 +21,7 @@
     "@google-cloud/translate": "^2.1.2",
     "@google-cloud/vision": "^0.22.1",
     "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "jquery": "^3.3.1",

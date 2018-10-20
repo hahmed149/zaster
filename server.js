@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
@@ -7,11 +7,14 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 
-const urlImageOfDay = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY';
+
+const nasa_api = process.env.NASA_API;
+const urlImageOfDay = 'https://api.nasa.gov/planetary/apod?api_key='+nasa_api;
 
 app.get('/', function(req, res) {
   request(urlImageOfDay, function(error, response, body) {
      let data = JSON.parse(body).hdurl;
+     console.log(data);
     res.render('index', {data});
  
   });
