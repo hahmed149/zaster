@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/hahmed149/zaster/issues"
   },
-  "homepage": "https://github.com/hahmed149/zaster#readme"
+  "homepage": "https://github.com/hahmed149/zaster#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
