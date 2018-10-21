@@ -7,6 +7,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 const vision = require('./vision');
+const tr = require('./translate');
 let urlForImag;
 
 const nasa_api = process.env.NASA_API;
@@ -66,6 +67,23 @@ app.get('/info', function(req, res) {
 });
 
 //end vision api
+
+
+//Start translation API *************************
+app.post('/info', function (req, res) {
+  const stringToTranslate = req.body.city;
+  console.log(req.body.city);
+  tr.translateEngine(stringToTranslate, function(translation){
+    console.log(translation);
+    res.render('translation', {translation});
+
+    
+  })
+  
+})
+
+
+//End translation API******************************
 
 
 
