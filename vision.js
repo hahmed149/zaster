@@ -1,5 +1,5 @@
 module.exports = {
-visionEngine : function(urlImg, callback)
+visionEngine: function(urlImg, callback)
 {
 // Imports the Google Cloud client library
 const vision = require('@google-cloud/vision');
@@ -21,7 +21,7 @@ const client = new vision.ImageAnnotatorClient({
 // Performs label detection on the image file
 client
   // .labelDetection('https://apod.nasa.gov/apod/image/1810/NGC6543-BYU-L.jpg')
-  .labelDetection('https://apod.nasa.gov/apod/image/1810/NGC6543-BYU-L.jpg')
+  .labelDetection(urlImg)
   .then(results => {
     const labels = results[0].labelAnnotations;
 

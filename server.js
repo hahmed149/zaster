@@ -47,7 +47,7 @@ app.get('/info', function(req, res) {
   vision.visionEngine(urlForImag, function(labels) {
     console.log(labels);
     res.render('info', {labels});
-
+    
   });
 });
 
