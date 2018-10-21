@@ -86,7 +86,20 @@ app.post('/info', function (req, res) {
 //End translation API******************************
 
 
+app.get('/coordinates', function(req,req) {
+  request(issLocation,function(error, response,body){
+    let data = JSON.parese(body).iss_position;
+    let latitude = data2.latitude;
+    let longitude = data2.longitude;
+    res.json({latitude: latitude, longitude: longitude});
+  });
+})
 
+app.all('/*', function(req,res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 
 
