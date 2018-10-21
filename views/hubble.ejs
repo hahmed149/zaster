@@ -47,8 +47,8 @@
   <!-------------------- MOBILE NAV ENDS -------------------------->
 </div>
 <!------------------------------- NAV ENDS ---------------------->
-   
-    <div id= "hubbleBody" >
+
+    <div id= "hubbleBody" style="margin-top:125px">
             <h1 style="color:#21BEDA">
                     Latest and greatest from the Hubble!
             </h1>
@@ -56,19 +56,20 @@
              
          </p>
        
-            
+         <ol class="rounded-list" style="display: flex; flex-wrap: wrap; flex-direction: row; width:100%">
         <% for(var i=0; i<hubbleData.length; i++) {%>
            
             
-            <ol class="rounded-list">
-                    <li><a href= <%= hubbleData[i].url %> </a> <%= hubbleData[i].name %></a></li>
-            </ol>   
+            
+                    <li style="width:23%; margin-left:1%; margin-right: 1%; "><a style="min-height:75px; display: flex; justify-content: center; vertical-align: middle; flex-direction: column" href= <%= hubbleData[i].url %> </a> <%= hubbleData[i].name %></a></li>
+            
             
              <% } %>
-  
+            </ol>   
 
     </div>
    
+
     
   </body>
 </html>

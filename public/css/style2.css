@@ -86,9 +86,8 @@ ol ol {
 /*************************************************************************************/
 .nav{
   font-family: "Times New Roman", Times, serif;
-  padding-bottom: 20px;
   position: relative;
-  bottom
+  
 }
 a{
 	text-decoration: none;
@@ -116,7 +115,8 @@ a{
 }
 /***************************for fixed nav*********************/
 .header{
-	position: fixed;
+  position: fixed;
+  z-index:999;
 	top: 0;
 	width: 100%;
 		background: rgba(0,0,0,0.7);
