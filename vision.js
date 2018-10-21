@@ -21,6 +21,7 @@ const client = new vision.ImageAnnotatorClient({
 // Performs label detection on the image file
 client
   .labelDetection(urlImg)
+  // .labelDetection('/Users/hahmed/Documents/GitHub/zaster/images.jpeg')
   .then(results => {
     const labels = results[0].labelAnnotations;
 

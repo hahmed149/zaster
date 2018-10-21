@@ -13,7 +13,7 @@ const urlImageOfDay = 'https://api.nasa.gov/planetary/apod?api_key='+nasa_api;
 
 app.get('/', function(req, res) {
   request(urlImageOfDay, function(error, response, body) {
-     let data = JSON.parse(body).hdurl;
+     let data = JSON.parse(body).url;
      
      urlForImag = data;
      console.log(urlForImag);
@@ -23,7 +23,20 @@ app.get('/', function(req, res) {
 });
 //end api for background
 
+//start apis for hubble
+const hubbleNews =  'http://hubblesite.org/api/v3/news';
+app.get('/hubble', function(req, res) {
+  request(hubbleNews, function(error, response, body) {
+     let hubbleData = JSON.parse(body);
+     console.log(hubbleData);
+    res.render('hubble', {hubbleData});
+  });
+});
+//end apis for hubble
 
+
+
+//start international space station
 const issLocation = 'http://api.open-notify.org/iss-now.json';
 app.get('/iss', function(req, res) {
   request(issLocation, function(error, response, body) {
