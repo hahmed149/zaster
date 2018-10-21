@@ -86,9 +86,9 @@ app.post('/info', function (req, res) {
 //End translation API******************************
 
 
-app.get('/coordinates', function(req,req) {
+app.get('/coordinates', function(req,res) {
   request(issLocation,function(error, response,body){
-    let data = JSON.parese(body).iss_position;
+    let data2 = JSON.parse(body).iss_position;
     let latitude = data2.latitude;
     let longitude = data2.longitude;
     res.json({latitude: latitude, longitude: longitude});
