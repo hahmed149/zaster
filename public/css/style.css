@@ -17,6 +17,9 @@ body{
 *{
 	box-sizing: border-box;
 }
+#hubbleBody{
+    padding-top: 30px;
+}
 #img{
     height:100%;
     width: 100%;
