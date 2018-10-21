@@ -4,7 +4,7 @@ const {Translate} = require('@google-cloud/translate');
 process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "translate.json";
 
 // Your Google Cloud Platform project ID
-const projectId = 'earnest-trilogy-138223';
+const projectId = 'valued-watch-220108';
 
 // Instantiates a client
 const translate = new Translate({

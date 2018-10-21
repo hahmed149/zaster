@@ -6,38 +6,22 @@ const app = express();
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
-const vision = require('./vision');
-let urlForImag;
+
 
 const nasa_api = process.env.NASA_API;
 const urlImageOfDay = 'https://api.nasa.gov/planetary/apod?api_key='+nasa_api;
 
 app.get('/', function(req, res) {
   request(urlImageOfDay, function(error, response, body) {
-     let data = JSON.parse(body).url;
-     
-     urlForImag = data;
-     console.log(urlForImag);
+     let data = JSON.parse(body).hdurl;
+     console.log(data);
     res.render('index', {data});
  
   });
 });
 //end api for background
 
-//start apis for hubble
-const hubbleNews =  'http://hubblesite.org/api/v3/news';
-app.get('/hubble', function(req, res) {
-  request(hubbleNews, function(error, response, body) {
-     let hubbleData = JSON.parse(body);
-     console.log(hubbleData);
-    res.render('hubble', {hubbleData});
-  });
-});
-//end apis for hubble
 
-
-
-//start international space station
 const issLocation = 'http://api.open-notify.org/iss-now.json';
 app.get('/iss', function(req, res) {
   request(issLocation, function(error, response, body) {
@@ -53,7 +37,6 @@ app.get('/iss', function(req, res) {
   });
 });
 
-
 app.get('/coordinates', function(req, res) {
   request(issLocation, function(error, response, body) {
     let data2 = JSON.parse(body).iss_position;
@@ -67,25 +50,6 @@ app.get('/coordinates', function(req, res) {
 
 
 //end api for iss
-
-
-//start vision api**************************
-
-app.get('/info', function(req, res) {
-  vision.visionEngine(urlForImag, function(labels) {
-    console.log(labels);
-    res.render('info', {labels});
-    
-  });
-});
-
-//end vision api
-
-
-
-
-
-
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
