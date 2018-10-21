@@ -18,16 +18,13 @@
                 the following could be the keywords used to describe the NASA image of the day. </p>
 
 
-            
-    
-
-   
     <p>
        
+            
         <% for(var i=0; i<labels.length; i++) {%>
-            <ul>
-                    <li><%= labels[i].description %></li>
-            </ul>    
+            <ol class="rounded-list">
+                    <li><a href=""><%= labels[i].description %></a></li>
+            </ol>    
             
              <% } %>
     
