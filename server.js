@@ -6,8 +6,12 @@ const app = express();
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
+
+
 const vision = require('./vision');
+const translate = require('./translate');
 let urlForImag;
+let trString;
 const nasa_api = process.env.NASA_API;
 const urlImageOfDay = 'https://api.nasa.gov/planetary/apod?api_key='+nasa_api;
 
@@ -58,13 +62,28 @@ app.get('/iss', function(req, res) {
 
 app.get('/info', function(req, res) {
   vision.visionEngine(urlForImag, function(labels) {
+    trString = {labels};
     console.log(labels);
     res.render('info', {labels});
-    
+     
   });
 });
 
 //end vision api
+
+
+
+//start translate api**************************
+
+app.post('/info', function(req, res) {
+  translate.translateEngine(trString, function(translations) {
+    console.log(translations);
+    res.render('info', {translations});
+
+  });
+});
+
+//end translate api
 
 
 

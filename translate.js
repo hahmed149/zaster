@@ -1,5 +1,8 @@
+module.exports = {
+  translateEngine: function(trString, callback)
+  {
 // Imports the Google Cloud client library
-const {Translate} = require('@google-cloud/translate');
+const Translate = require('@google-cloud/translate');
 
 process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "translate.json";
 
@@ -7,24 +10,30 @@ process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "translate.json";
 const projectId = 'earnest-trilogy-138223';
 
 // Instantiates a client
-const translate = new Translate({
-  projectId: projectId,
-});
+// const translate = new Translate({
+//   projectId: projectId,
+// });
+const translate = new Translate();
 
-// The text to translate
-const text = 'Hello, world!';
 // The target language
 const target = 'de';
 
 // Translates some text into Russian
 translate
-  .translate(text, target)
+  .translate(trString, target)
   .then(results => {
-    const translation = results[0];
 
-    console.log(`Text: ${text}`);
-    console.log(`Translation: ${translation}`);
-  })
+   let translations = results[0];
+
+
+console.log('Translations:');
+console.log(translations);
+  callback(translations);
+})
+
   .catch(err => {
     console.error('ERROR:', err);
+    
   });
+  }
+}
