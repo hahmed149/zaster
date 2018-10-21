@@ -1,3 +1,6 @@
+module.exports = {
+  translateEngine: function(stTranslate, callback)
+  {
 // Imports the Google Cloud client library
 const {Translate} = require('@google-cloud/translate');
 
@@ -18,13 +21,16 @@ const target = 'de';
 
 // Translates some text into Russian
 translate
-  .translate(text, target)
+  .translate(stTranslate, target)
   .then(results => {
     const translation = results[0];
 
-    console.log(`Text: ${text}`);
+    console.log(`Text: ${stTranslate}`);
     console.log(`Translation: ${translation}`);
+    callback(translation);
   })
   .catch(err => {
     console.error('ERROR:', err);
   });
+}
+}
