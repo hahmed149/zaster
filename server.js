@@ -52,6 +52,20 @@ app.get('/iss', function(req, res) {
  
   });
 });
+
+
+app.get('/coordinates', function(req, res) {
+  request(issLocation, function(error, response, body) {
+    let data2 = JSON.parse(body).iss_position;
+    let latitude = data2.latitude;
+    let longitude = data2.longitude;
+    res.json({latitude: latitude, longitude: longitude});
+ 
+
+ });
+})
+
+
 //end api for iss
 
 
