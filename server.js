@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 const vision = require('./vision');
 let urlForImag;
+
 const nasa_api = process.env.NASA_API;
 const urlImageOfDay = 'https://api.nasa.gov/planetary/apod?api_key='+nasa_api;
 

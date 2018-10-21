@@ -6,18 +6,25 @@
     <link rel="stylesheet" type="text/css" href="/css/style2.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
   </head>
-  <body>
+  <body style='background-color: #0F1E32'>
     
     
    
     <div>
-         
+            <h1 style="color:#21BEDA">
+                    Latest and greatest from the Hubble!
+            </h1>
+         <p>
+             
+         </p>
        
             
         <% for(var i=0; i<hubbleData.length; i++) {%>
-            <ol >
-                    <li><a href=""><%= hubbleData[i].name %></a></li>
-            </ol>    
+           
+            
+            <ol class="rounded-list">
+                    <li><a href=<%= hubbleData[i].url %> </a> <%= hubbleData[i].name %></a></li>
+            </ol>   
             
              <% } %>
   
