@@ -7,7 +7,7 @@ const vision = require('@google-cloud/vision');
 process.env['GOOGLE_APPLICATION_CREDENTIALS'] = "vision.json";
 
 // Your Google Cloud Platform project ID
-const projectId = 'earnest-trilogy-138223';
+const projectId = 'sonic-diorama-149616';
 
 
 // Creates a client
